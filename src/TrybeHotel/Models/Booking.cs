@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
  // 1. Implemente as models da aplicação
 public class Booking {
-     public int BookingId { get; set; }
+    public int BookingId { get; set; }
     public DateTime CheckIn { get; set; }
     public DateTime CheckOut { get; set; }
     public int GuestQuant { get; set; }
