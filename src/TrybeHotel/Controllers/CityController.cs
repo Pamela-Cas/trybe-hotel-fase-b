@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TrybeHotel.Models;
 using TrybeHotel.Repository;
-
+// iniciando o projeto
 namespace TrybeHotel.Controllers
 {
     [ApiController]
