@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TrybeHotel.Models;
 using TrybeHotel.Repository;
-// iniciando o projeto
+// iniciando o projeto 
 namespace TrybeHotel.Controllers
 {
     [ApiController]
@@ -16,12 +16,12 @@ namespace TrybeHotel.Controllers
         
         [HttpGet]
         public IActionResult GetCities(){
-            throw new NotImplementedException();
+            return Ok(_repository.GetCities());
         }
 
         [HttpPost]
         public IActionResult PostCity([FromBody] City city){
-            throw new NotImplementedException();
+            return Created("", _repository.AddCity(city));
         }
     }
 }

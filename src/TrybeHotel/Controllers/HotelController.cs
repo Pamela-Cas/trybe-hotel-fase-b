@@ -20,12 +20,13 @@ namespace TrybeHotel.Controllers
         
         [HttpGet]
         public IActionResult GetHotels(){
-            throw new NotImplementedException();
+            return Ok(_repository.GetHotels().ToList());
         }
 
         [HttpPost]
         public IActionResult PostHotel([FromBody] Hotel hotel){
-            throw new NotImplementedException();
+            var hotelDto = _repository.AddHotel(hotel);
+            return CreatedAtAction(nameof(GetHotels), new { id = hotelDto.HotelId }, hotelDto);
         }
 
 
