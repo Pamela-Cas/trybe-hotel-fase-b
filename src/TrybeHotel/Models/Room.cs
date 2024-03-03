@@ -12,5 +12,6 @@ public class Room
   public string? Image { get; set; }
   [ForeignKey("HotelId")]
   public int HotelId { get; set; }
+  public List<Booking>? Bookings { get; set; }
 
 }
