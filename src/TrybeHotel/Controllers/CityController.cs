@@ -16,12 +16,12 @@ namespace TrybeHotel.Controllers
         
         [HttpGet]
         public IActionResult GetCities(){
-            return Ok(_repository.GetCities());
+            return Ok(_repository.GetCities().ToList());
         }
 
         [HttpPost]
         public IActionResult PostCity([FromBody] City city){
-            return Created("", _repository.AddCity(city));
+           return Created("", _repository.AddCity(city));
         }
     }
 }
