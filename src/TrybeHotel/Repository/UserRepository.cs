@@ -17,11 +17,31 @@ namespace TrybeHotel.Repository
 
         public UserDto Login(LoginDto login)
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
         public UserDto Add(UserDtoInsert user)
         {
-            throw new NotImplementedException(); 
+            if (_context.Users.FirstOrDefault(u => u.Email == user.Email) != null)
+            {
+                throw new Exception("User email already exists");
+            }
+            var newUser = new User
+            {
+                Name = user.Name,
+                Email = user.Email,
+                Password = user.Password,
+                UserType = "client",
+            };
+            var userResponse = _context.Users.Add(newUser);
+            _context.SaveChanges();
+            return new UserDto
+            {
+                UserId = userResponse.Entity.UserId,
+                Name = newUser.Name,
+                Email = newUser.Email,
+                UserType = newUser.UserType,
+            };
+
         }
 
         public UserDto GetUserByEmail(string userEmail)
@@ -31,7 +51,7 @@ namespace TrybeHotel.Repository
 
         public IEnumerable<UserDto> GetUsers()
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
     }
