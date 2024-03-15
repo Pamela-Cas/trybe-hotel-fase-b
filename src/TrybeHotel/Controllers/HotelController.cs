@@ -4,6 +4,7 @@ using TrybeHotel.Repository;
 using TrybeHotel.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
 
 namespace TrybeHotel.Controllers
 {
@@ -24,6 +25,8 @@ namespace TrybeHotel.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Policy = "Admin")]
         public IActionResult PostHotel([FromBody] Hotel hotel){
             return Created("", _repository.AddHotel(hotel));
         }
