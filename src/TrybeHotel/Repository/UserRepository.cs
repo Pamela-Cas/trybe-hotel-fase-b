@@ -12,58 +12,81 @@ namespace TrybeHotel.Repository
         }
         public UserDto GetUserById(int userId)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (user != null)
+            {
+                return new UserDto()
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Email = user.Email,
+                    UserType = user.UserType
+                };
+            }
+            return null;
         }
 
         public UserDto Login(LoginDto login)
         {
-            var userExist = _context.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
-            if (userExist == null)
+            var user = _context.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
+            if (user != null)
             {
-                throw new Exception("Incorrect e-mail or password");
+                return new UserDto()
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Email = user.Email,
+                    UserType = user.UserType
+                };
             }
-            return new UserDto
-            {
-                UserId = userExist.UserId,
-                Name = userExist.Name,
-                Email = userExist.Email,
-                UserType = userExist.UserType
-            };
+            return null;
         }
         public UserDto Add(UserDtoInsert user)
         {
-            if (_context.Users.FirstOrDefault(u => u.Email == user.Email) != null)
-            {
-                throw new Exception("User email already exists");
-            }
-            var newUser = new User
+            var newUser = new User()
             {
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password,
-                UserType = "client",
+                UserType = "client"
             };
-            var userResponse = _context.Users.Add(newUser);
+            _context.Users.Add(newUser);
             _context.SaveChanges();
-            return new UserDto
+            return new UserDto()
             {
-                UserId = userResponse.Entity.UserId,
+                UserId = newUser.UserId,
                 Name = newUser.Name,
                 Email = newUser.Email,
-                UserType = newUser.UserType,
+                UserType = newUser.UserType
             };
-
         }
 
         public UserDto GetUserByEmail(string userEmail)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
+            if (user != null)
+            {
+                return new UserDto()
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Email = user.Email,
+                    UserType = user.UserType
+                };
+            }
+            return null;
         }
 
         public IEnumerable<UserDto> GetUsers()
         {
-            throw new NotImplementedException();
+            var users = _context.Users.Select(u => new UserDto()
+            {
+                UserId = u.UserId,
+                Name = u.Name,
+                Email = u.Email,
+                UserType = u.UserType
+            });
+            return users.ToList();
         }
-
     }
 }

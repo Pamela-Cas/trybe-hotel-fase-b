@@ -19,6 +19,7 @@ namespace TrybeHotel.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "Admin")]
         public IActionResult GetUsers()
         {
             var users = _repository.GetUsers();
