@@ -39,7 +39,7 @@ namespace TrybeHotel.Repository
                     UserType = user.UserType
                 };
             }
-            return null;
+            throw new Exception("Incorrect e-mail or password");
         }
         public UserDto Add(UserDtoInsert user)
         {
