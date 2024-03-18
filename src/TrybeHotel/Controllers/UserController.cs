@@ -31,6 +31,10 @@ namespace TrybeHotel.Controllers
         {
             try
             {
+             var verifyEmail = _repository.GetUserByEmail(user.Email!);
+
+            if (verifyEmail != null ) throw new Exception("User email already exists");
+            
                 var newUser = _repository.Add(user);
                 return Created("", newUser);
             }

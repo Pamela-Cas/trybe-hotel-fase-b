@@ -42,7 +42,7 @@ namespace TrybeHotel.Repository
             throw new Exception("Incorrect e-mail or password");
         }
         public UserDto Add(UserDtoInsert user)
-        {
+        {  
             var newUser = new User()
             {
                 Name = user.Name,
