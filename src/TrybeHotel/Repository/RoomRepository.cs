@@ -37,7 +37,7 @@ namespace TrybeHotel.Repository
         }
 
         public RoomDto AddRoom(Room room) {
-             _context.Rooms.Add(room);
+            _context.Rooms.Add(room);
             _context.SaveChanges();
             return new RoomDto
             {

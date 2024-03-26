@@ -40,13 +40,14 @@ namespace TrybeHotel.Services
         }
 
         private IEnumerable<Claim> AddClaims(UserDto user)
-          {
+        {
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, user.Name),
-        new Claim(ClaimTypes.Email, user.Email),
-        new Claim(ClaimTypes.Role, user.UserType)
-    };
+            {
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.UserType)
+                };
+                
             return claims;
         }
     }
